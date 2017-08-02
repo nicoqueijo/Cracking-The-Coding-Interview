@@ -52,7 +52,7 @@ public class IsUnique {
         return true;
     }
 
-    // optional solution
+    // optiomal solution
     // sorts the characters in the string alphabetically, then checks if two
     // of the same characters appear adjacent to each other
     // complexity: O(n log n)
@@ -62,7 +62,7 @@ public class IsUnique {
             return false;
         }
         
-        // convert String into array of Comparables in order to use mergeSort on it O(n)
+        // converts string into array of Comparables in order to use mergeSort on it O(n)
         Comparable[] stringAsComparable = new Comparable[string.length()];
         for (int i = 0; i < string.length(); i++) {
             stringAsComparable[i] = string.charAt(i);
@@ -70,7 +70,7 @@ public class IsUnique {
         
         mergeSort(stringAsComparable); // O(n log n)
         // string is now sorted alphabetically
-        // for each char in sortedString check if next char is the same, if so
+        // for each char in sorted string check if next char is the same, if so
         // return false. At the end of loop return true. O(n)
         for (int i = 1; i < stringAsComparable.length; i++) {
             if (stringAsComparable[i] == stringAsComparable[i - 1]) {
