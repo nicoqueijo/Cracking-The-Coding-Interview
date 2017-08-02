@@ -1,5 +1,7 @@
 package arrays_and_strings;
 
+import sorting_algorithms.MergeSort;
+
 /**
  * Implement an algorithm to determine if a string has all unique characters.
  * What if you cannot use additional data structures?
@@ -35,7 +37,7 @@ public class IsUnique {
         System.out.println(isUnique2(str6)); // "abcdefghijklmnopqrstuvwxyz" TRUE
 
         // optimal O(n)
-        System.out.println("\nisUnique2:");
+        System.out.println("\nisUnique3:");
         System.out.println(isUnique3(str1)); // "boolean" FALSE
         System.out.println(isUnique3(str2)); // "apple" FALSE
         System.out.println(isUnique3(str3)); // "mouse" TRUE
@@ -47,7 +49,7 @@ public class IsUnique {
     // brute force solution.
     // for every character in a string is checks every other character to see if
     // there is another one of the same value.
-    // complexity: O(n^2)
+    // time complexity: O(n^2)
     public static boolean isUnique1(String string) {
         for (int i = 0; i < string.length(); i++) {
             for (int j = 0; j < string.length(); j++) {
@@ -64,7 +66,7 @@ public class IsUnique {
     // improved solution.
     // sorts the characters in the string alphabetically, then checks if two
     // of the same characters appear adjacent to each other.
-    // complexity: O(n log n)
+    // time complexity: O(n log n)
     public static boolean isUnique2(String string) {
         // a string must have at least two characters to have duplicate characters
         if (string.length() < 2) {
@@ -77,7 +79,9 @@ public class IsUnique {
             stringAsComparable[i] = string.charAt(i);
         }
 
-        mergeSort(stringAsComparable); // O(n log n)
+        // O(n log n)
+        MergeSort.mergeSort(stringAsComparable);
+
         // string is now sorted alphabetically
         // for each char in sorted string check if next char is the same, if so
         // return false. At the end of loop return true. O(n)
@@ -93,7 +97,7 @@ public class IsUnique {
     // makes an array of booleans the size of the amount of ASCII characters.
     // use this array to map and track each character in the string to see if
     // it has been visisted yet.
-    // complexity O(n)
+    // time complexity O(n)
     public static boolean isUnique3(String string) {
         // assuming ASCII char set, you cannot possibly have a string with all
         // unique chars whose number of chars exceeds the amount of available chars
@@ -111,73 +115,4 @@ public class IsUnique {
         }
         return true;
     }
-
-    /**
-     * Mergesort algorithm.
-     *
-     * @param a an array of Comparable items.
-     */
-    public static void mergeSort(Comparable[] a) {
-        Comparable[] tmpArray = new Comparable[a.length];
-        mergeSort(a, tmpArray, 0, a.length - 1);
-    }
-
-    /**
-     * Internal method that makes recursive calls.
-     *
-     * @param a an array of Comparable items.
-     * @param tmpArray an array to place the merged result.
-     * @param left the left-most index of the subarray.
-     * @param right the right-most index of the subarray.
-     */
-    private static void mergeSort(Comparable[] a, Comparable[] tmpArray,
-            int left, int right) {
-        if (left < right) {
-            int center = (left + right) / 2;
-            mergeSort(a, tmpArray, left, center);
-            mergeSort(a, tmpArray, center + 1, right);
-            merge(a, tmpArray, left, center + 1, right);
-        }
-    }
-
-    /**
-     * Internal method that merges two sorted halves of a subarray.
-     *
-     * @param a an array of Comparable items.
-     * @param tmpArray an array to place the merged result.
-     * @param leftPos the left-most index of the subarray.
-     * @param rightPos the index of the start of the second half.
-     * @param rightEnd the right-most index of the subarray.
-     */
-    private static void merge(Comparable[] a, Comparable[] tmpArray,
-            int leftPos, int rightPos, int rightEnd) {
-        int leftEnd = rightPos - 1;
-        int tmpPos = leftPos;
-        int numElements = rightEnd - leftPos + 1;
-
-        // Main loop
-        while (leftPos <= leftEnd && rightPos <= rightEnd) {
-            if (a[leftPos].compareTo(a[rightPos]) <= 0) {
-                tmpArray[tmpPos++] = a[leftPos++];
-            } else {
-                tmpArray[tmpPos++] = a[rightPos++];
-            }
-        }
-
-        while (leftPos <= leftEnd) // Copy rest of first half
-        {
-            tmpArray[tmpPos++] = a[leftPos++];
-        }
-
-        while (rightPos <= rightEnd) // Copy rest of right half
-        {
-            tmpArray[tmpPos++] = a[rightPos++];
-        }
-
-        // Copy tmpArray back
-        for (int i = 0; i < numElements; i++, rightEnd--) {
-            a[rightEnd] = tmpArray[rightEnd];
-        }
-    }
-
 }
