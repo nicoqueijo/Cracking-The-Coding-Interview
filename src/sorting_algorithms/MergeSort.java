@@ -73,4 +73,62 @@ public class MergeSort {
             a[rightEnd] = tmpArray[rightEnd];
         }
     }
+
+    // TRACING MERGE SORT WITH ARRAY OF INTS
+    public static void mergeSort1(int[] list, int lowIndex, int highIndex) {
+        System.out.println("MERGESORT: LOW: " + list[lowIndex] + " HIGH: " + list[highIndex]);
+        if (lowIndex == highIndex) {
+            return;
+        } else {
+            int midIndex = (lowIndex + highIndex) / 2;
+            mergeSort1(list, lowIndex, midIndex);
+            mergeSort1(list, midIndex + 1, highIndex);
+            merge1(list, lowIndex, midIndex, highIndex);
+        }
+    }
+
+    public static void merge1(int[] list, int lowIndex, int midIndex, int highIndex) {
+
+        System.out.println("MERGE: LOW: " + list[lowIndex] + " MID: " + list[midIndex] + " HIGH: " + list[highIndex]);
+
+        int[] L = new int[midIndex - lowIndex + 2];
+        for (int i = lowIndex; i <= midIndex; i++) {
+            L[i - lowIndex] = list[i];
+        }
+        L[midIndex - lowIndex + 1] = Integer.MAX_VALUE;
+
+        int[] R = new int[highIndex - midIndex + 1];
+        for (int i = midIndex + 1; i <= highIndex; i++) {
+            R[i - midIndex - 1] = list[i];
+        }
+        R[highIndex - midIndex] = Integer.MAX_VALUE;
+
+        int i = 0, j = 0;
+        for (int k = lowIndex; k <= highIndex; k++) {
+            if (L[i] <= R[j]) {
+                list[k] = L[i];
+                i++;
+            } else {
+                list[k] = R[j];
+                j++;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+
+        int[] list = {4, 6, 1, 5, 8, 3, 2, 7};
+
+//        for (int i = 0; i < list.length; i++) {
+//            System.out.print(list[i] + " ");
+//        }
+        System.out.println();
+
+        mergeSort1(list, 0, list.length - 1);
+
+//        for (int i = 0; i < list.length; i++) {
+//            System.out.print(list[i] + " ");
+//        }
+    }
+
 }
