@@ -74,7 +74,7 @@ public class CheckPermutation {
 
     // makes two int arrays to track how many times each character from each string appears.
     // then checks if these two arrays are equal.
-    // time complexity O(n log n)
+    // time complexity O(n)
     public static boolean isPermutation2(String string1, String string2) {
         // if the strings are of different length it is impossible to be permutations
         // of each other.
