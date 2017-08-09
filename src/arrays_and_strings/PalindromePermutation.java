@@ -38,7 +38,7 @@ public class PalindromePermutation {
     // characters. Then we traverse the string and for each character we increment
     // the index of the that ASCII char in our array. At the end we traverse our
     // ASCII array and make sure each index has an even value except for at most
-    // one.
+    // one which would represent the middle of the palindrome.
     // time complexity: O(n)
     public static boolean isPalindromePermutation(String string) {
         int[] asciiTableCounter = new int[128];
