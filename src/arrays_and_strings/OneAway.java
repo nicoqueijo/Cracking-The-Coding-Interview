@@ -32,7 +32,7 @@ public class OneAway {
     // Optimal solution
     // If the difference between the two strings is greater than one it is impossible
     // for them to be one edit away so false is returned.
-    // Ff they are the same length each string is traversed character by character
+    // If they are the same length each string is traversed character by character
     // on the same index. On the second occurence that the characters at the current
     // index are different it returns false.
     // If the lengths vary by 1, we traverse both strings using the shorter one
