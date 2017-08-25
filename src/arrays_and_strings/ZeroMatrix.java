@@ -33,9 +33,9 @@ public class ZeroMatrix {
             }
             System.out.println();
         }
-        
+
         System.out.println();
-        
+
         System.out.println("Algorithm 2");
         zeroMatrix2(matrix);
         // Algorithm 2
@@ -47,15 +47,15 @@ public class ZeroMatrix {
         }
     }
 
-    // Traverses the matrix testing whether the current cell has the value of 0.
+    // Traverses the matrix testing whether the current cell has the value of zero.
     // If so it traverses every cell at that row and column and sets their values
-    // to 0.
+    // to zero.
     //
     // Time complexity: O(n(l + w)) where n is the amount of cells in the matrix,
     // l is the length of the matrix, w is the width of the matrix. In a worse case
-    // scenario every cell contains the value 0 and the algorithm traverses across
-    // that row and column to set those cells to 0. For every cell it does length +
-    // width work.
+    // scenario every cell contains the value zero and the algorithm traverses across
+    // that row and column to set those cells to zero. For every cell it does length
+    // + width work.
     public static int[][] zeroMatrix1(int[][] matrix) {
         int rows = matrix.length;
         int cols = matrix[0].length;
@@ -82,9 +82,17 @@ public class ZeroMatrix {
         return newMatrix;
     }
 
-    // Traverses the matrix...
+    // Traverses the matrix keeping track of which row and column has at least one
+    // zero. It stores this information in two arrays of booleans representing the 
+    // rows and columns. After the first traversal we know which row and column has 
+    // one or more zeros.
+    // On the second matrix traversal we check if the row or column at that cell
+    // contains at least one zero by checking the index of our boolean arrays.
+    // If so we set that cell to the value zero.
     //
-    // Time complexity: 
+    // Time complexity: O(n) 
+    // To be exact the time complexity is O(2n)
+    // Space complexity: O(1)
     public static void zeroMatrix2(int[][] matrix) {
         int rows = matrix.length;
         int cols = matrix[0].length;
