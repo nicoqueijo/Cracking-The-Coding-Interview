@@ -23,8 +23,9 @@ public class ZeroMatrix {
             {1, 1, 1, 1, 1, 1, 1},
             {1, 1, 1, 1, 1, 1, 0}
         };
-
+        
         int[][] newMatrix = zeroMatrix(matrix);
+        // prints the new matrix that set the entire row and column of cells with value 0
         for (int i = 0; i < newMatrix.length; i++) {
             for (int j = 0; j < newMatrix[0].length; j++) {
                 System.out.print(newMatrix[i][j] + " ");
