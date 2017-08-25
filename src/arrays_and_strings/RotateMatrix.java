@@ -13,10 +13,11 @@ public class RotateMatrix {
 
         char[][] matrix
                 = {
-                    {'A', 'B', 'C', 'D'},
-                    {'E', 'F', 'G', 'H'},
-                    {'I', 'J', 'K', 'L'},
-                    {'M', 'N', 'O', 'P'}
+                    {'A', 'B', 'C', 'D', 'E'},
+                    {'F', 'G', 'H', 'I', 'J'},
+                    {'K', 'L', 'M', 'N', 'O'},
+                    {'P', 'Q', 'R', 'S', 'T'},
+                    {'U', 'V', 'W', 'X', 'Y'}
                 };
 
         System.out.println("original matrix:");
@@ -49,12 +50,12 @@ public class RotateMatrix {
 
     }
 
-    // Solution using additional data structure 
+    // Solution using an additional data structure 
     //
     // Traverses the matrix and writes it in another matrix inversing the row
     // or column depending on direction changed.
     //
-    // Time complexity: O(n)
+    // Time complexity: O(n) where n is the length * width of the matrix
     // Space complexity: O(n)
     public static char[][] rotateMatrix(char[][] matrix, String direction) {
         char[][] rotatedMatrix = new char[matrix.length][matrix[0].length];
