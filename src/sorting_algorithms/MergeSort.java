@@ -9,41 +9,41 @@ public class MergeSort {
     /**
      * Mergesort algorithm.
      *
-     * @param a an array of Comparable items.
+     * @param list an array of Comparable items.
      */
-    public static void mergeSort(Comparable[] a) {
-        Comparable[] tmpArray = new Comparable[a.length];
-        mergeSort(a, tmpArray, 0, a.length - 1);
+    public static void mergeSort(Comparable[] list) {
+        Comparable[] tmpArray = new Comparable[list.length];
+        mergeSort(list, tmpArray, 0, list.length - 1);
     }
 
     /**
      * Internal method that makes recursive calls.
      *
-     * @param a an array of Comparable items.
+     * @param list an array of Comparable items.
      * @param tmpArray an array to place the merged result.
      * @param left the left-most index of the subarray.
      * @param right the right-most index of the subarray.
      */
-    private static void mergeSort(Comparable[] a, Comparable[] tmpArray,
+    private static void mergeSort(Comparable[] list, Comparable[] tmpArray,
             int left, int right) {
         if (left < right) {
             int center = (left + right) / 2;
-            mergeSort(a, tmpArray, left, center);
-            mergeSort(a, tmpArray, center + 1, right);
-            merge(a, tmpArray, left, center + 1, right);
+            mergeSort(list, tmpArray, left, center);
+            mergeSort(list, tmpArray, center + 1, right);
+            merge(list, tmpArray, left, center + 1, right);
         }
     }
 
     /**
      * Internal method that merges two sorted halves of a subarray.
      *
-     * @param a an array of Comparable items.
+     * @param list an array of Comparable items.
      * @param tmpArray an array to place the merged result.
      * @param leftPos the left-most index of the subarray.
      * @param rightPos the index of the start of the second half.
      * @param rightEnd the right-most index of the subarray.
      */
-    private static void merge(Comparable[] a, Comparable[] tmpArray,
+    private static void merge(Comparable[] list, Comparable[] tmpArray,
             int leftPos, int rightPos, int rightEnd) {
         int leftEnd = rightPos - 1;
         int tmpPos = leftPos;
@@ -51,26 +51,26 @@ public class MergeSort {
 
         // Main loop
         while (leftPos <= leftEnd && rightPos <= rightEnd) {
-            if (a[leftPos].compareTo(a[rightPos]) <= 0) {
-                tmpArray[tmpPos++] = a[leftPos++];
+            if (list[leftPos].compareTo(list[rightPos]) <= 0) {
+                tmpArray[tmpPos++] = list[leftPos++];
             } else {
-                tmpArray[tmpPos++] = a[rightPos++];
+                tmpArray[tmpPos++] = list[rightPos++];
             }
         }
 
         while (leftPos <= leftEnd) // Copy rest of first half
         {
-            tmpArray[tmpPos++] = a[leftPos++];
+            tmpArray[tmpPos++] = list[leftPos++];
         }
 
         while (rightPos <= rightEnd) // Copy rest of right half
         {
-            tmpArray[tmpPos++] = a[rightPos++];
+            tmpArray[tmpPos++] = list[rightPos++];
         }
 
         // Copy tmpArray back
         for (int i = 0; i < numElements; i++, rightEnd--) {
-            a[rightEnd] = tmpArray[rightEnd];
+            list[rightEnd] = tmpArray[rightEnd];
         }
     }
 
