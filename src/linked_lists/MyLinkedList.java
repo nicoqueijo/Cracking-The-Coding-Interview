@@ -1,5 +1,7 @@
 package linked_lists;
 
+import java.util.HashSet;
+
 /**
  *
  * @author nicoq
@@ -36,7 +38,7 @@ public class MyLinkedList {
      *
      * Time complexity: (n^2)
      */
-    public void removeDuplicates() {
+    public void removeDupsIteratively() {
         if (isEmpty() || size == 1) {
             return;
         }
@@ -52,6 +54,22 @@ public class MyLinkedList {
                 }
             }
             tempHead = tempHead.getNext();
+        }
+    }
+
+    public void removeDupsUsingHashTable() {
+        HashSet<Integer> hashSet = new HashSet<>();
+        Node temp = head;
+        while (temp.getNext() != null) {
+            if (!hashSet.contains(temp.getNext().getData())) {
+                hashSet.add(temp.getNext().getData());
+            } else {
+                Node nodeToDel = temp.getNext();
+                temp.setNext(temp.getNext().getNext());
+                nodeToDel.setNext(null);
+                size--;
+            }
+            temp = temp.getNext();
         }
     }
 
