@@ -1,6 +1,7 @@
 package linked_lists;
 
 import java.util.HashSet;
+import java.util.Stack;
 
 /**
  *
@@ -114,6 +115,34 @@ public class MyLinkedList {
         Node temp = k.getNext();
         k.setNext(k.getNext().getNext());
         temp.setNext(null);
+    }
+
+    /**
+     * Traverses the linked list and pushes each node in a stack. Then traverses
+     * the list from the start again while popping each node from the stack. If
+     * a node from the linked list does not match the node being popped from the
+     * stack, the linked list is not a palindrome. Else the linked list and the
+     * stack were both traversed and compared and all the nodes match.
+     *
+     * Time complexity: O(n)
+     *
+     * @return whether this linkedlist is a palindrome
+     */
+    public boolean isPalindrome() {
+        Stack<Integer> stack = new Stack<>();
+        Node temp = head;
+        while (temp.getNext() != null) {
+            stack.push(temp.getNext().getData());
+            temp = temp.getNext();
+        }
+        temp = head;
+        while (temp.getNext() != null) {
+            if (temp.getNext().getData() != stack.pop()) {
+                return false;
+            }
+            temp = temp.getNext();
+        }
+        return true;
     }
 
     public void printList() {
