@@ -100,7 +100,15 @@ public class MyLinkedList {
         }
         return current;
     }
-    
+
+    /**
+     * Deletes node k by copying k.next.data to k and then making k point to
+     * k.next.next. Then we make k.next point to null.
+     *
+     * Time complexity: O(1)
+     *
+     * @param k the node to delete.
+     */
     public void deleteMiddleNode(Node k) {
         k.setData(k.getNext().getData());
         Node temp = k.getNext();
