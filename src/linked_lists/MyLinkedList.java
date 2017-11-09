@@ -73,6 +73,34 @@ public class MyLinkedList {
         }
     }
 
+    /**
+     * Positions Node runner k steps from the head. Positions Node current at
+     * the head. Starts traversing the Linked List incrementing runner and
+     * current by one node at a time until runner reaches the tail. Once that
+     * happens current is k positions from the tail. Current is returned.
+     *
+     * Time complexity: O(n)
+     *
+     * @param k the number of positions from the tail
+     * @return the node that is kth to last from the tail
+     */
+    public Node returnKthToLast(int k) {
+        if (k >= size) {
+            System.out.println("k is greater or equal to last!");
+            return null;
+        }
+        Node current = head;
+        Node runner = head;
+        for (int i = 0; i < k; i++) {
+            runner = runner.getNext();
+        }
+        while (runner.getNext() != null) {
+            runner = runner.getNext();
+            current = current.getNext();
+        }
+        return current;
+    }
+
     public void printList() {
         Node temp = head;
         while (temp.getNext() != null) {
