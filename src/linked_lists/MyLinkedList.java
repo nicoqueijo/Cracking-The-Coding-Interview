@@ -100,6 +100,13 @@ public class MyLinkedList {
         }
         return current;
     }
+    
+    public void deleteMiddleNode(Node k) {
+        k.setData(k.getNext().getData());
+        Node temp = k.getNext();
+        k.setNext(k.getNext().getNext());
+        temp.setNext(null);
+    }
 
     public void printList() {
         Node temp = head;
